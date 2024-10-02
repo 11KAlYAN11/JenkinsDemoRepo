@@ -11,6 +11,8 @@ pipeline {
         timeout(time: 30, unit: 'MINUTES')  // Set a timeout for the entire pipeline
         retry(2)  // Retry the pipeline 2 times in case of failure
     }
+    triggers {
+        pollSCM '*/1 * * * *'
     
     stages {
         stage('Checkout') {
