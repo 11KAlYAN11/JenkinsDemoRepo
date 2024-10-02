@@ -29,6 +29,10 @@ pipeline {
                     echo 'Building the project...'
                     //sh 'mkdir -p ${BUILD_DIR} && cd ${BUILD_DIR} && javac HelloWorld.java'  // Example shell command
                     sh 'javac HelloWorld.java'
+                    sh '''
+                    cd myapp
+                    pip install -r requirments.txt
+                    '''
                 }
             }
         }
@@ -39,6 +43,11 @@ pipeline {
                     steps {
                         echo 'Running Unit Tests...'
                         sh 'echo "Running unit tests"'
+                        sh '''
+                        cd myapp
+                        python3 hello.py
+                        python3 hello.py --name=SLN
+                        '''
                     }
                 }
                 stage('Integration Tests') {
